@@ -9,13 +9,23 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="ni ni-planet text-blue"></i> Carreras
+        <a class="nav-link" href="{{ url('/careers') }}">
+            <i class="ni ni-hat-3 text-blue"></i> Carreras
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/laboratories') }}">
+            <i class="ni ni-laptop text-info"></i> Laboratorios
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="#">
-            <i class="ni ni-pin-3 text-orange"></i> Alumnos
+            <i class="ni ni-time-alarm text-success"></i> Horarios de tiempo libre Laboratorios
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="ni ni-circle-08 text-orange"></i> Alumnos
         </a>
     </li>
     <li class="nav-item">
@@ -25,7 +35,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="#">
-            <i class="ni ni-bullet-list-67 text-red"></i> Reservaciones
+            <i class="ni ni-calendar-grid-58 text-red"></i> Reservaciones
         </a>
     </li>
     <li class="nav-item">
@@ -50,7 +60,7 @@
     <li class="nav-item">
         <a class="nav-link"
             href="#">
-            <i class="ni ni-collection text-yellow"></i> Frecuencia de Reservaciones
+            <i class="ni ni-sound-wave text-yellow"></i> Frecuencia de Reservaciones
         </a>
     </li>
     <li class="nav-item">
