@@ -15,4 +15,10 @@ class Laboratory extends Model
         'edifice',
         'file_path',
     ];
+
+    public function attendants()
+    {
+        //UN LABORATORIO TIENE VARIOS ENCARGADOS
+        return $this->hasMany(Attendant::class);
+    }
 }

@@ -5,12 +5,12 @@
         <div class="card-header border-0">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="mb-0">Laboratorios</h3>
+                    <h3 class="mb-0">Encargados</h3>
                 </div>
                 @if (Auth::guard('web')->check())
                     <div class="col text-right">
-                        <a href="{{ url('laboratories/create') }}" class="btn btn-sm btn-success">
-                            Nuevo Laboratorio
+                        <a href="{{ url('attendants/create') }}" class="btn btn-sm btn-success">
+                            Nuevo Encargado
                         </a>
                     </div>
                 @endif
@@ -30,45 +30,47 @@
             <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
+                        <th scope="col">Número de Empleado</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Salón</th>
-                        <th scope="col">Edificio</th>
-                        <th scope="col">Estado</th>
+                        <th scope="col">Primer Apellido</th>
+                        <th scope="col">Segundo Apellido</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Laboratorio</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($laboratories as $laboratory)
+                    @foreach ($attendants as $attendant)
                         <!--ITERAMOS LA COLECCIÓN DE DATOS -->
                         <tr>
                             <th scope="row">
-                                {{ $laboratory->name }}
+                                {{ $attendant->num_empleado }}
                             </th>
                             <th scope="row">
-                                {{ $laboratory->classroom }}
+                                {{ $attendant->name }}
                             </th>
                             <th scope="row">
-                                {{ $laboratory->edifice }}
+                                {{ $attendant->first_name }}
                             </th>
                             <th scope="row">
-                                {{ $laboratory->status }}
+                                {{ $attendant->second_name }}
+                            </th>
+                            <th scope="row">
+                                {{ $attendant->email }}
+                            </th>
+                            <th scope="row">
+                                {{ $attendant->laboratory->name }}
                             </th>
                             <td>
                                 @if (Auth::guard('web')->check())
-                                    <form action="{{ url('/laboratories/' . $laboratory->id . '/delete') }}"
+                                    <form action="{{ url('/attendants/' . $attendant->id . '/delete') }}"
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="files/{{ $laboratory->file_path }}" target="blank_"
-                                            class="btn btn-sm btn-success">Ver Horario</a>
-                                        <a href="{{ url('/laboratories/' . $laboratory->id . '/edit') }}"
+                                        <a href="{{ url('/attendants/' . $attendant->id . '/edit') }}"
                                             class="btn btn-sm btn-primary">Editar</a>
                                         <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
                                     </form>
-                                @else
-                                    <a href="files/{{ $laboratory->file_path }}" target="blank_"
-                                        class="btn btn-sm btn-success">Ver Horario</a>
-
                                 @endif
 
                             </td>

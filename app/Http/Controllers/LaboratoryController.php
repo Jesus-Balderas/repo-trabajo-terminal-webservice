@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Laboratory;
 use Exception;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LaboratoryController extends Controller
 {
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth');
     }
-
+    */
+    
     public function index()
     {
         $laboratories = Laboratory::all();
@@ -80,4 +82,51 @@ class LaboratoryController extends Controller
     {
         return view('laboratories.edit', compact('laboratory'));
     }
+
+    public function update(Request $request, Laboratory $laboratory)
+    {
+        $rules = [
+            'name' => 'required|min:10',
+            'classroom' => 'required',
+            'edifice' => 'required',
+        ];
+        
+        $messages = [
+            'name.required' => "Es necesario ingresar un nombre.",
+            'classroom.required' => "Es necesario ingresar un salon.",
+            'edifice.required' => "Es necesario ingresar un numero de edificio.",
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $laboratory->name = $request->input('name');
+        $laboratory->classroom = $request->input('classroom');
+        $laboratory->edifice = $request->input('edifice');
+        //Se actualiza el archivo PDF en caso de haberse ingresado uno nuevo.
+        if($request->hasFile('file_path')){
+            $file = $request->file('file_path');
+            $file->move(public_path().'/files/', $file->getClientOriginalName());
+            $laboratory->file_path = $file->getClientOriginalName();
+        }
+
+        $laboratory->save();//UPDATE
+        $notification = 'La información del laboratorio se ha actualizado correctamente.';
+        return redirect('/laboratories')->with(compact('notification'));
+        
+    }
+
+    public function destroy(Laboratory $laboratory)
+    {
+        $deletedLaboratory = $laboratory->name;
+        $file_path = public_path().'/files/'. $laboratory->file_path;
+        
+        if(File::exists($file_path)){
+            File::delete($file_path);
+        }
+
+        $laboratory->delete();
+        $notification = 'El laboratorio '.$deletedLaboratory.' se ha eliminado correctamente.';
+        return redirect('/laboratories')->with(compact('notification'));
+    }
+
 }

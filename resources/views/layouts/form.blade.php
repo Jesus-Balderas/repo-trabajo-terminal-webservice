@@ -47,21 +47,21 @@
               </div>
             </div>
           </div>
-          <!-- Navbar items -->
+          <!-- Navbar items 
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ route('register') }}">
+              <a class="nav-link nav-link-icon" {{-- href="{{ route('register') }}" --}} href="{{ route('user.register') }}">
                 <i class="ni ni-circle-08"></i>
                 <span class="nav-link-inner--text">Registro</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ route('login') }}">
+              <a class="nav-link nav-link-icon" {{-- href="{{ route('login') }}" --}} href="{{ route('user.login') }}">
                 <i class="ni ni-key-25"></i>
                 <span class="nav-link-inner--text">Ingresar</span>
               </a>
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </nav>

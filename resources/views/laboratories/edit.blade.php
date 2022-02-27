@@ -28,6 +28,7 @@
 
             <form action="{{ url('laboratories/'.$laboratory->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="name">Nombre del laboratorio:</label>
                     <input type="text" name="name" class="form-control" value="{{ old('name', $laboratory->name) }}" required>
@@ -43,7 +44,8 @@
                 <div class="form-group">
                     <div class="mb-3">
                         <label for="file_path" class="form-label">Horario:</label>
-                        <input class="form-control" type="file" name="file_path" required>
+                        <input class="form-control" type="file" name="file_path">
+                        <p>Ingrese un archivo nuevo solo si desea modificar el existente</p>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">

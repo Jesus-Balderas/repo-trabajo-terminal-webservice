@@ -17,6 +17,14 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+    'student'=>[
+        'driver' => 'eloquent',
+        'model' => App\Models\Student::class,
+    ],
+    'attendant'=>[
+        'driver' => 'eloquent',
+        'model' => App\Models\Attendant::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -40,6 +48,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
+        ],
+        'attendant' => [
+            'driver' => 'session',
+            'provider' => 'attendants',
+        ]
     ],
 
     /*
@@ -69,6 +85,15 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Student::class,
+        ],
+
+        'attendants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Attendant::class,
+        ]
     ],
 
     /*
@@ -93,6 +118,14 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Student::class,
+        ],
+        'attendants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Attendant::class,
+        ]
     ],
 
     /*

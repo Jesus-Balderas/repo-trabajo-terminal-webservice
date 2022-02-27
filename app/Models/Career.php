@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Career extends Model
 {
-    use HasFactory;
+    public function students()
+    {
+        //UNA CARRERA SE ASOCIA CON MUCHOS ALUMNOS
+        return $this->hasMany(Student::class);
+    }
 }

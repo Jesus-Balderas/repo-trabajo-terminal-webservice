@@ -18,6 +18,9 @@
     <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <!-- Argon CSS -->
     <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
+    
+    @yield('styles')
+    
 </head>
 
 <body>
@@ -96,8 +99,17 @@
         <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
             <div class="container-fluid">
                 <!-- Brand -->
-                <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Panel de
-                    Administración</a>
+                <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">
+                    @if(Auth::guard('web')->check())
+
+                    Panel de Administración
+
+                    @else
+
+                    Menú Principal               
+
+                    @endif
+                    </a>
                 <!-- Form -->
                 <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
                     <div class="form-group mb-0">
@@ -120,7 +132,24 @@
                                     <img alt="Image placeholder" src="{{ asset('/img/theme/avatar.png') }}">
                                 </span>
                                 <div class="media-body ml-2 d-none d-lg-block">
-                                    <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>
+                                    <span class="mb-0 text-sm  font-weight-bold">
+                                        @if(Auth::guard('web')->check())
+
+                                            {{ Auth::guard('web')->user()->name }}
+                                        
+                                        @endif
+
+                                        @if(Auth::guard('student')->check()) 
+
+                                            {{ Auth::guard('student')->user()->name }}
+
+                                        @endif
+
+                                        @if(Auth::guard('attendant')->check())
+                                            
+                                            {{ Auth::guard('attendant')->user()->name }}
+                                        @endif
+                                    </span>
                                 </div>
                             </div>
                         </a>
@@ -153,6 +182,7 @@
     <!-- Optional JS -->
     <script src="{{ asset('vendor/chart.js/dist/Chart.min.js') }}"></script>
     <script src="{{ asset('vendor/chart.js/dist/Chart.extension.js') }}"></script>
+    @yield('scripts')
     <!-- Argon JS -->
     <script src="{{ asset('js/argon.js?v=1.0.0') }}"></script>
 </body>
