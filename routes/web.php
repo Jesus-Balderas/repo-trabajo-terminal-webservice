@@ -95,3 +95,8 @@ Route::delete('/attendants/{attendant}/delete', [App\Http\Controllers\AttendantC
 
 //Student
 Route::get('/students', [\App\Http\Controllers\StudentController::class, 'index']);
+
+//ScheduleLaboratory
+Route::get('/schedule', [\App\Http\Controllers\ScheduleLaboratoryController::class, 'index']);
+Route::get('/schedule/create', [App\Http\Controllers\ScheduleLaboratoryController::class, 'create']);
+Route::post('/schedule', [App\Http\Controllers\ScheduleLaboratoryController::class, 'store']);

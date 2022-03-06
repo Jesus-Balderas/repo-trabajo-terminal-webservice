@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,5 +21,10 @@ class Laboratory extends Model
     {
         //UN LABORATORIO TIENE VARIOS ENCARGADOS
         return $this->hasMany(Attendant::class);
+    }
+
+    public function scheduleLaboratory()
+    {
+        return $this->belongsTo(ScheduleLaboratory::class);
     }
 }

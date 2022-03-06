@@ -14,8 +14,8 @@
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#">
-        <i class="ni ni-time-alarm text-success"></i> Horarios de tiempo libre Laboratorios
+    <a class="nav-link" href="{{ url('/schedule') }}">
+        <i class="ni ni-time-alarm text-success"></i> Gestión de Horarios de Laboratorios
     </a>
 </li>
 <li class="nav-item">
