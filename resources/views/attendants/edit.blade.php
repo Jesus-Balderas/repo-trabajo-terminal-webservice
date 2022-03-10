@@ -63,18 +63,6 @@
                     <input type="text" name="password" class="form-control" value="">
                     <p>Ingrese un valor solo si desea modificar la contraseña</p>
                 </div>
-
-                <div class="form-group">
-                    <label for="laboratories">Laboratorio</label>
-                    <select name="laboratories" id="laboratories" class="form-control selectpicker" 
-                            data-style="btn-online-success" title="Seleccione un laboratorio">
-                            
-                        @foreach($laboratories as $laboratory)
-                            <option value="{{ $laboratory->id }}"> {{ $laboratory->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
                 <button type="submit" class="btn btn-primary">
                     Guardar
                 </button>
@@ -86,10 +74,5 @@
 @section('scripts')
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-<script>
-    //Esta función se ejecuta una vez que la página se ha cargado
-    $(document).ready(() => {
-        $('#laboratories').selectpicker('val', @json($laboratory_ids));
-    });
-</script>
+
 @endsection

@@ -1,5 +1,9 @@
 @extends('layouts.panel')
+@section('styles')
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
+@endsection
 @section('content')
     <div class="card shadow">
         <div class="card-header border-0">
@@ -46,10 +50,29 @@
                         <input class="form-control" type="file" name="file_path" required>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="attendants">Encargado:</label>
+                    <select name="attendants" id="attendants" class="form-control selectpicker"
+                        data-style="btn-online-success" title="Seleccione un encargado">
+
+                        @foreach ($attendants as $attendant)
+                            @if (old('attendants') == $attendant->id)
+                                <option value="{{ $attendant->id }}" selected> {{ $attendant->name }}</option>
+                            @else
+                                <option value="{{ $attendant->id }}"> {{ $attendant->name }}</option>
+                            @endif
+
+                        @endforeach
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">
                     Guardar
                 </button>
             </form>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 @endsection

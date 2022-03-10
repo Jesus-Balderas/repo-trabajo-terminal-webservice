@@ -31,6 +31,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Laboratorio</th>
+                        <th scope="col">Encargado</th>
                         <th scope="col">Día</th>
                         <th scope="col">Hora Inicio</th>
                         <th scope="col">Hora Fin</th>
@@ -38,36 +39,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($laboratories as $laboratory) --}}
+                    @foreach ($schedules as $schedule)
                         <!--ITERAMOS LA COLECCIÓN DE DATOS -->
                         <tr>
                             <th scope="row">
-                               {{-- {{ $laboratory->name }} --}} 
+                                {{ $schedule->laboratory }}
                             </th>
                             <th scope="row">
-                               {{-- {{ $laboratory->classroom }} --}}
+                                {{ $schedule->attendant }}
                             </th>
                             <th scope="row">
-                               {{-- {{ $laboratory->edifice }} --}} 
+                                {{ $schedule->day }}
                             </th>
                             <th scope="row">
-                               {{-- {{ $laboratory->status }} --}} 
+                                {{ $schedule->time_start }}
+                            </th>
+                            <th scope="row">
+                                {{ $schedule->time_end }}
                             </th>
                             <td>
                                 @if (Auth::guard('web')->check())
-                                    <form action="#"
-                                        method="POST">
+                                    <form action="{{ url('/schedule/' . $schedule->id . '/delete') }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <a href=""
+                                        <a href="{{ url('/schedule/' . $schedule->id . '/edit') }}"
                                             class="btn btn-sm btn-primary">Editar</a>
                                         <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
                                     </form>
                                 @endif
-
                             </td>
                         </tr>
-                    {{--@endforeach  --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>

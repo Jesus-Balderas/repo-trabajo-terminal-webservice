@@ -21,8 +21,6 @@ class CreateAttendantsTable extends Migration
             $table->string('second_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->unsignedInteger('laboratory_id');
-            $table->foreign('laboratory_id')->references('id')->on('laboratories');
             $table->timestamps();
         });
     }

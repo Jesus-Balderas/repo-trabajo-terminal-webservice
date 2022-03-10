@@ -19,8 +19,7 @@ class AttendantController extends Controller
 
     public function create()
     {
-        $laboratories = Laboratory::all();
-        return view('attendants.create', compact('laboratories'));
+        return view('attendants.create');
     }
 
     public function check(Request $request)
@@ -65,7 +64,6 @@ class AttendantController extends Controller
             'first_name' => 'required|min:5',
             'second_name' => 'required|min:5',
             'email' => 'required|email|unique:attendants,email',
-            'laboratories'=> 'required',
             'password' => 'required|min:5|max:30',
         ];
 
@@ -83,7 +81,6 @@ class AttendantController extends Controller
         $attendant->first_name = $request->input('first_name');
         $attendant->second_name = $request->input('second_name');
         $attendant->email = $request->input('email');
-        $attendant->laboratory()->associate($request->input('laboratories'));
         $attendant->password = bcrypt($request->input('password'));
         $attendant->save();
 
@@ -94,12 +91,8 @@ class AttendantController extends Controller
 
     public function edit($id)
     {
-        
         $attendant = Attendant::findOrFail($id);
-        $laboratories = Laboratory::all();
-        $laboratory_ids = $attendant->laboratory()->pluck('id');
-        //dd($attendant, $laboratories, $laboratory_ids);
-        return view('attendants.edit', compact('attendant', 'laboratories', 'laboratory_ids'));
+        return view('attendants.edit', compact('attendant'));
     }
 
     public function update(Request $request, $id)
@@ -120,10 +113,10 @@ class AttendantController extends Controller
         if ($password) {
             $data['password'] = bcrypt($password);
         }
-        $laboratory = $request->input('laboratories');
+        /*$laboratory = $request->input('laboratories');
         if ($laboratory) {
             $data['laboratory'] = $attendant->laboratory()->associate($laboratory);
-        }
+        }*/
         $attendant->fill($data);
         $attendant->save();
         

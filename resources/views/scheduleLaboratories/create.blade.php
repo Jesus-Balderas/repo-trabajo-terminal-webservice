@@ -31,17 +31,26 @@
                     </ul>
                 </div>
             @endif
+            @if (Session::get('fail'))
+                <div class="alert alert-danger" role="alert">
+                    {{ Session::get('fail') }}
+                </div>
+            @endif
 
             <form action="{{ url('schedule') }}" method="POST">
                 @csrf
-
                 <div class="form-group">
                     <label for="laboratories">Laboratorio:</label>
                     <select name="laboratories" id="laboratories" class="form-control selectpicker"
                         data-style="btn-online-success" title="Seleccione un laboratorio">
 
                         @foreach ($laboratories as $laboratory)
-                            <option value="{{ $laboratory->id }}"> {{ $laboratory->name }}</option>
+                            @if (old('laboratories') == $laboratory->id)
+                                <option value="{{ $laboratory->id }}" selected> {{ $laboratory->name }}</option>
+                            @else
+                                <option value="{{ $laboratory->id }}"> {{ $laboratory->name }}</option>
+                            @endif
+
                         @endforeach
                     </select>
                 </div>
@@ -52,7 +61,11 @@
                         title="Seleccione un día de la semana">
 
                         @foreach ($days as $day)
-                            <option value="{{ $day }}"> {{ $day }}</option>
+                            @if (old('day') == $day)
+                                <option value="{{ $day }}" selected> {{ $day }}</option>
+                            @else
+                                <option value="{{ $day }}"> {{ $day }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -62,21 +75,31 @@
                         <div class="col">
                             <label for="name">Hora Inicio:</label>
                             <select name="time_start" class="form-control selectpicker" data-style="btn-online-success"
-                                    title="Seleccione una hora de inicio">
-                                @for ($i = 7; $i <= 21; $i++)
-                                    <option value="{{ ($i < 10 ? '0' : '') . $i }}:00">{{ ($i < 10 ? '0' : '') .  $i }}:00 HRS</option>
-                                    <option value="{{ ($i < 10 ? '0' : '') . $i }}:30">{{ ($i < 10 ? '0' : '') . $i }}:30 HRS</option>
-                                @endfor
+                                title="Seleccione una hora de inicio">
+                                <option value="07:00">07:00</option>
+                                <option value="08:30">08:30</option>
+                                <option value="10:30">10:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:30">16:30</option>
+                                <option value="18:30">18:30</option>
+                                <option value="20:00">20:00</option>
                             </select>
                         </div>
                         <div class="col">
                             <label for="name">Hora Fin:</label>
                             <select name="time_end" class="form-control selectpicker" data-style="btn-online-success"
-                                    title="Seleccione una hora de fin">
-                                @for ($i = 7; $i <= 21; $i++)
-                                    <option value="{{ ($i < 10 ? '0' : '') . $i }}:00">{{ ($i < 10 ? '0' : '') .  $i }}:00 HRS </option>
-                                    <option value="{{ ($i < 10 ? '0' : '') . $i }}:30">{{ ($i < 10 ? '0' : '') . $i }}:30 HRS</option>
-                                @endfor
+                                title="Seleccione una hora de fin">
+                                <option value="08:30">08:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:30">16:30</option>
+                                <option value="18:00">18:00</option>
+                                <option value="20:00">20:00</option>
+                                <option value="21:30">21:30</option>
                             </select>
                         </div>
                     </div>

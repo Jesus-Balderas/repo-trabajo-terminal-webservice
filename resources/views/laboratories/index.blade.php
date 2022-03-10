@@ -34,6 +34,7 @@
                         <th scope="col">Salón</th>
                         <th scope="col">Edificio</th>
                         <th scope="col">Estado</th>
+                        <th scope="col">Encargado</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
@@ -52,6 +53,9 @@
                             </th>
                             <th scope="row">
                                 {{ $laboratory->status }}
+                            </th>
+                            <th scope="row">
+                                {{ $laboratory->attendant->name }}
                             </th>
                             <td>
                                 @if (Auth::guard('web')->check())

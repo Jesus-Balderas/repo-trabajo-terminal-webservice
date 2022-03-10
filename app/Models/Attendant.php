@@ -45,9 +45,9 @@ class Attendant extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function laboratory()
+    public function laboratories()
     {
         //UN ENCARGADO PERTENECE A UN LABORATORIO
-        return $this->belongsTo(Laboratory::class);
+        return $this->hasMany(Laboratory::class);
     }
 }

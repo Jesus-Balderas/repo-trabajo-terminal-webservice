@@ -100,3 +100,6 @@ Route::get('/students', [\App\Http\Controllers\StudentController::class, 'index'
 Route::get('/schedule', [\App\Http\Controllers\ScheduleLaboratoryController::class, 'index']);
 Route::get('/schedule/create', [App\Http\Controllers\ScheduleLaboratoryController::class, 'create']);
 Route::post('/schedule', [App\Http\Controllers\ScheduleLaboratoryController::class, 'store']);
+Route::get('/schedule/{schedule}/edit',[App\Http\Controllers\ScheduleLaboratoryController::class, 'edit']);
+Route::put('/schedule/{schedule}',[App\Http\Controllers\ScheduleLaboratoryController::class, 'update']);
+Route::delete('/schedule/{schedule}/delete',[App\Http\Controllers\ScheduleLaboratoryController::class, 'destroy']);

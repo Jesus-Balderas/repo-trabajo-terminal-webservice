@@ -17,8 +17,9 @@ class ScheduleLaboratory extends Model
         'laboratory_id'
     ];
 
-    public function laboratories()
+    public function laboratory()
     {
-        return $this->hasMany(Laboratory::class);
+        //UN HORARIO SE ASOCIA CON UN LABORATORIO
+        return $this->belongsTo(Laboratory::class);
     }
 }

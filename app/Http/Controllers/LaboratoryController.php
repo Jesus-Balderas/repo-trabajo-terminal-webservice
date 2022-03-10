@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendant;
 use App\Models\Laboratory;
 use Exception;
 use Illuminate\Support\Facades\File;
@@ -24,7 +25,8 @@ class LaboratoryController extends Controller
 
     public function create()
     {
-        return view('laboratories.create');
+        $attendants = Attendant::all(['id', 'name']);
+        return view('laboratories.create', compact('attendants'));
     }
 
     private function perfomValidation(Request $request){
@@ -33,13 +35,15 @@ class LaboratoryController extends Controller
             'name' => 'required|min:10',
             'classroom' => 'required',
             'edifice' => 'required',
-            'file_path'=> 'required'
+            'file_path'=> 'required',
+            'attendants'=>'required'
         ];
         $messages = [
             'name.required' => "Es necesario ingresar un nombre.",
             'classroom.required' => "Es necesario ingresar un salon.",
             'edifice.required' => "Es necesario ingresar un numero de edificio.",
-            'file_path.required' => "Es necesario adjuntar un horario en formato PDF."
+            'file_path.required' => "Es necesario adjuntar un horario en formato PDF.",
+            'attendants.required' => "Seleccione un encargado para este laboratorio."
         ];
 
         $this->validate($request, $rules, $messages);
@@ -63,7 +67,7 @@ class LaboratoryController extends Controller
                 $file->move(public_path().'/files/', $file->getClientOriginalName());
                 $laboratory->file_path = $file->getClientOriginalName();
             }
-
+            $laboratory->attendant()->associate($request->input('attendants'));
             $laboratory->save();
             DB::commit();
 
@@ -78,9 +82,13 @@ class LaboratoryController extends Controller
         
     }
 
-    public function edit(Laboratory $laboratory)
+    public function edit($id)
     {
-        return view('laboratories.edit', compact('laboratory'));
+        $laboratory = Laboratory::findOrFail($id);
+        $attendants = Attendant::all();
+        $attendant_ids = $laboratory->attendant()->pluck('id');
+        //dd($attendants, $laboratory, $attendant_ids);
+        return view('laboratories.edit', compact('laboratory','attendants', 'attendant_ids'));
     }
 
     public function update(Request $request, Laboratory $laboratory)
@@ -89,12 +97,14 @@ class LaboratoryController extends Controller
             'name' => 'required|min:10',
             'classroom' => 'required',
             'edifice' => 'required',
+            'attendants' => 'required'
         ];
         
         $messages = [
             'name.required' => "Es necesario ingresar un nombre.",
             'classroom.required' => "Es necesario ingresar un salon.",
             'edifice.required' => "Es necesario ingresar un numero de edificio.",
+            'attendants' => "Es necesario ingresar a un encargado"
         ];
 
         $this->validate($request, $rules, $messages);
@@ -108,7 +118,11 @@ class LaboratoryController extends Controller
             $file->move(public_path().'/files/', $file->getClientOriginalName());
             $laboratory->file_path = $file->getClientOriginalName();
         }
-
+        $attendant = $request->input('attendants');
+        if ($attendant) {
+            
+            $laboratory->attendant()->associate($attendant);
+        }
         $laboratory->save();//UPDATE
         $notification = 'La información del laboratorio se ha actualizado correctamente.';
         return redirect('/laboratories')->with(compact('notification'));

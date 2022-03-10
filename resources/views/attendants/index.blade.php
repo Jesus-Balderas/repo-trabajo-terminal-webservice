@@ -35,7 +35,6 @@
                         <th scope="col">Primer Apellido</th>
                         <th scope="col">Segundo Apellido</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Laboratorio</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
@@ -57,9 +56,6 @@
                             </th>
                             <th scope="row">
                                 {{ $attendant->email }}
-                            </th>
-                            <th scope="row">
-                                {{ $attendant->laboratory->name }}
                             </th>
                             <td>
                                 @if (Auth::guard('web')->check())

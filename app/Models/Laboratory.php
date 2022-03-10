@@ -17,14 +17,15 @@ class Laboratory extends Model
         'file_path',
     ];
 
-    public function attendants()
+    public function attendant()
     {
-        //UN LABORATORIO TIENE VARIOS ENCARGADOS
-        return $this->hasMany(Attendant::class);
+        //UN LABORATORIO PERTENECE A UN ENCARGADO
+        return $this->belongsTo(Attendant::class);
     }
 
-    public function scheduleLaboratory()
+    public function scheduleLaboratories()
     {
-        return $this->belongsTo(ScheduleLaboratory::class);
+        //UN LABORATORIO TIENE VARIOS HORARIOS
+        return $this->hasMany(ScheduleLaboratory::class);
     }
 }

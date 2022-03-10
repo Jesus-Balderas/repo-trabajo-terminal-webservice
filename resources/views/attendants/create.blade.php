@@ -61,18 +61,6 @@
                     <label for="password">Contraseña</label>
                     <input type="text" name="password" class="form-control" value="{{ old('password') }}" required>
                 </div>
-
-                <div class="form-group">
-                    <label for="laboratories">Laboratorio</label>
-                    <select name="laboratories" id="laboratories" class="form-control selectpicker" 
-                            data-style="btn-online-success" title="Seleccione un laboratorio">
-                            
-                        @foreach($laboratories as $laboratory)
-                            <option value="{{ $laboratory->id }}"> {{ $laboratory->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
                 <button type="submit" class="btn btn-primary">
                     Guardar
                 </button>

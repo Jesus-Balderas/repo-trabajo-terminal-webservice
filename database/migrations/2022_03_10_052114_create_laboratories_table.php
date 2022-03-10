@@ -20,6 +20,8 @@ class CreateLaboratoriesTable extends Migration
             $table->string('edifice');
             $table->string('status')->default('ABIERTO');
             $table->string('file_path')->nullable();
+            $table->unsignedInteger('attendant_id');
+            $table->foreign('attendant_id')->references('id')->on('attendants');
             $table->timestamps();
         });
     }
