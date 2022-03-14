@@ -33,7 +33,6 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Salón</th>
                         <th scope="col">Edificio</th>
-                        <th scope="col">Computadoras</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Encargado</th>
                         <th scope="col">Opciones</th>
@@ -51,9 +50,6 @@
                             </th>
                             <th scope="row">
                                 {{ $laboratory->edifice }}
-                            </th>
-                            <th scope="row">
-                                {{ $laboratory->computers }}
                             </th>
                             <th scope="row">
                                 {{ $laboratory->status }}
