@@ -13,11 +13,11 @@
         <i class="ni ni-laptop text-info"></i> Laboratorios
     </a>
 </li>
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a class="nav-link" href="{{ url('/schedule') }}">
         <i class="ni ni-time-alarm text-success"></i> Gestión de Horarios de Laboratorios
     </a>
-</li>
+</li>  --}}
 <li class="nav-item">
     <a class="nav-link" href="{{ url('/students') }}">
         <i class="ni ni-circle-08 text-orange"></i> Alumnos

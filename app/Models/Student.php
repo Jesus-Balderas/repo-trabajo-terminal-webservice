@@ -24,6 +24,7 @@ class Student extends Authenticatable
         'second_name',
         'email',
         'password',
+        'career_id'
     ];
 
     /**

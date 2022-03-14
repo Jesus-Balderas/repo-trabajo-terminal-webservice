@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScheduleLaboratoriesTable extends Migration
+class CreateComputersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateScheduleLaboratoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('schedule_laboratories', function (Blueprint $table) {
+        Schema::create('computers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('day');
-            $table->time('time_start');
-            $table->time('time_end');
+            $table->integer('num_pc');
+            $table->string('status');
             $table->unsignedInteger('laboratory_id');
             $table->foreign('laboratory_id')->references('id')->on('laboratories');
             $table->timestamps();
@@ -31,6 +30,6 @@ class CreateScheduleLaboratoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schedule_laboratories');
+        Schema::dropIfExists('computers');
     }
 }

@@ -35,6 +35,7 @@ class LaboratoryController extends Controller
             'name' => 'required|min:10',
             'classroom' => 'required',
             'edifice' => 'required',
+            'computers' => 'required',
             'file_path'=> 'required',
             'attendants'=>'required'
         ];
@@ -42,6 +43,7 @@ class LaboratoryController extends Controller
             'name.required' => "Es necesario ingresar un nombre.",
             'classroom.required' => "Es necesario ingresar un salon.",
             'edifice.required' => "Es necesario ingresar un numero de edificio.",
+            'computers.required' => "Es necesario ingresar un numero de computadoras",
             'file_path.required' => "Es necesario adjuntar un horario en formato PDF.",
             'attendants.required' => "Seleccione un encargado para este laboratorio."
         ];
@@ -61,6 +63,7 @@ class LaboratoryController extends Controller
             $laboratory->name = $request->input('name');
             $laboratory->classroom = $request->input('classroom');
             $laboratory->edifice = $request->input('edifice');
+            $laboratory->computers = $request->input('computers');
 
             if($request->hasFile('file_path')){
                 $file = $request->file('file_path');

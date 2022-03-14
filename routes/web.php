@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Whoops\Run;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,9 +97,9 @@ Route::delete('/attendants/{attendant}/delete', [App\Http\Controllers\AttendantC
 Route::get('/students', [\App\Http\Controllers\StudentController::class, 'index']);
 
 //ScheduleLaboratory
-Route::get('/schedule', [\App\Http\Controllers\ScheduleLaboratoryController::class, 'index']);
-Route::get('/schedule/create', [App\Http\Controllers\ScheduleLaboratoryController::class, 'create']);
-Route::post('/schedule', [App\Http\Controllers\ScheduleLaboratoryController::class, 'store']);
-Route::get('/schedule/{schedule}/edit',[App\Http\Controllers\ScheduleLaboratoryController::class, 'edit']);
-Route::put('/schedule/{schedule}',[App\Http\Controllers\ScheduleLaboratoryController::class, 'update']);
-Route::delete('/schedule/{schedule}/delete',[App\Http\Controllers\ScheduleLaboratoryController::class, 'destroy']);
+Route::get('/schedule/{laboratory}', [\App\Http\Controllers\ScheduleLaboratoryController::class, 'edit']);
+Route::post('/schedule/{laboratory}/store', [App\Http\Controllers\ScheduleLaboratoryController::class, 'store']);
+
+Route::get('/appointments/create', [\App\Http\Controllers\AppointmentController::class, 'create'])->name('appointments.create');
+//JSON
+Route::get('/laboratories/{laboratory}/attendants', [App\Http\Controllers\Api\LaboratoryController::class,'attendants']);

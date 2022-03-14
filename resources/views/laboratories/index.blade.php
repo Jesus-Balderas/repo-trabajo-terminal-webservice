@@ -33,6 +33,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Salón</th>
                         <th scope="col">Edificio</th>
+                        <th scope="col">Computadoras</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Encargado</th>
                         <th scope="col">Opciones</th>
@@ -52,6 +53,9 @@
                                 {{ $laboratory->edifice }}
                             </th>
                             <th scope="row">
+                                {{ $laboratory->computers }}
+                            </th>
+                            <th scope="row">
                                 {{ $laboratory->status }}
                             </th>
                             <th scope="row">
@@ -63,15 +67,20 @@
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
+                                        <a href="{{ url('/schedule/'. $laboratory->id) }}"
+                                            class="btn btn-sm btn-success">Horario</a>
+
                                         <a href="files/{{ $laboratory->file_path }}" target="blank_"
-                                            class="btn btn-sm btn-success">Ver Horario</a>
+                                            class="btn btn-sm btn-success">PDF</a>
+
                                         <a href="{{ url('/laboratories/' . $laboratory->id . '/edit') }}"
                                             class="btn btn-sm btn-primary">Editar</a>
+
                                         <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
                                     </form>
                                 @else
                                     <a href="files/{{ $laboratory->file_path }}" target="blank_"
-                                        class="btn btn-sm btn-success">Ver Horario</a>
+                                        class="btn btn-sm btn-success">PDF</a>
 
                                 @endif
 

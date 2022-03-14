@@ -9,7 +9,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{{ route('appointments.create') }}">
         <i class="ni ni-hat-3 text-blue"></i> Hacer una reservación
     </a>
 </li>

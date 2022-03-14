@@ -10,16 +10,24 @@ class ScheduleLaboratory extends Model
     use HasFactory;
 
     protected $fillable = [
-
-        'day',
-        'time_start',
-        'time_end',
-        'laboratory_id'
+            'day',
+            'active',
+            'one_time',
+            'two_time',
+            'three_time',
+            'four_time',
+            'five_time',
+            'six_time',
+            'seven_time',
+            'eight_time',
+            'nine_time',
+            'laboratory_id'
     ];
-
+    
     public function laboratory()
     {
         //UN HORARIO SE ASOCIA CON UN LABORATORIO
         return $this->belongsTo(Laboratory::class);
     }
+    
 }

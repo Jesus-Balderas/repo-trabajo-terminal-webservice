@@ -28,8 +28,8 @@ class StudentController extends Controller
 
             'num_boleta' => 'required|min:10|unique:students,num_boleta',
             'name' => 'required|min:5',
-            'first_name' => 'required|min:5',
-            'second_name' => 'required|min:5',
+            'first_name' => 'required|min:4',
+            'second_name' => 'required|min:4',
             'email' => 'required|email|unique:students,email',
             'careers'=> 'required',
             'password' => 'required|min:5|max:30',

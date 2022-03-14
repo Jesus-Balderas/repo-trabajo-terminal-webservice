@@ -14,7 +14,9 @@ class Laboratory extends Model
         'name',
         'classroom',
         'edifice',
+        'computers',
         'file_path',
+        'attendant_id'
     ];
 
     public function attendant()
