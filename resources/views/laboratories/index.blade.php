@@ -67,8 +67,11 @@
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{ url('/schedule/'. $laboratory->id) }}"
-                                            class="btn btn-sm btn-success">Horario</a>
+                                        <a href="{{ url('/laboratory/computers/' . $laboratory->id) }}"
+                                            class="btn btn-sm btn-info">Computadoras</a>
+
+                                        <a href="{{ url('/schedule/' . $laboratory->id) }}"
+                                            class="btn btn-sm btn-warning">Horario</a>
 
                                         <a href="files/{{ $laboratory->file_path }}" target="blank_"
                                             class="btn btn-sm btn-success">PDF</a>
@@ -81,9 +84,7 @@
                                 @else
                                     <a href="files/{{ $laboratory->file_path }}" target="blank_"
                                         class="btn btn-sm btn-success">PDF</a>
-
                                 @endif
-
                             </td>
                         </tr>
                     @endforeach

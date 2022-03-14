@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Computer extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'num_pc',
+        'status',
+        'laboratory_id'
+    ];
 }

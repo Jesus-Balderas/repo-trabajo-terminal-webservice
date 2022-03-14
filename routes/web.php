@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComputerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -99,6 +100,12 @@ Route::get('/students', [\App\Http\Controllers\StudentController::class, 'index'
 //ScheduleLaboratory
 Route::get('/schedule/{laboratory}', [\App\Http\Controllers\ScheduleLaboratoryController::class, 'edit']);
 Route::post('/schedule/{laboratory}/store', [App\Http\Controllers\ScheduleLaboratoryController::class, 'store']);
+
+//Computers
+Route::get('/laboratory/computers/{laboratory}', [\App\Http\Controllers\ComputerController::class, 'index']);
+Route::get('/laboratory/computers/{laboratory}/create', [\App\Http\Controllers\ComputerController::class, 'create']);
+Route::post('/laboratory/computers', [App\Http\Controllers\ComputerController::class, 'store']);
+Route::delete('/laboratory/computers/{computers}/delete', [App\Http\Controllers\ComputerController::class, 'destroy']);
 
 Route::get('/appointments/create', [\App\Http\Controllers\AppointmentController::class, 'create'])->name('appointments.create');
 //JSON

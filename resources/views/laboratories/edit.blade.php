@@ -46,6 +46,10 @@
                     <input type="number" name="edifice" class="form-control" value="{{ old('edifice', $laboratory->edifice) }}" required>
                 </div>
                 <div class="form-group">
+                    <label for="edifice">Computadoras:</label>
+                    <input type="number" name="computers" class="form-control" value="{{ old('computers', $laboratory->computers) }}" required>
+                </div>
+                <div class="form-group">
                     <div class="mb-3">
                         <label for="file_path" class="form-label">Horario:</label>
                         <input class="form-control" type="file" name="file_path">
