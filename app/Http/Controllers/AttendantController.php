@@ -128,7 +128,7 @@ class AttendantController extends Controller
     {
         $attendantName = $attendant->name;
         $attendant->delete();
-        $notification = "El médico $attendantName se ha eliminado correctamente.";
+        $notification = "El encargado $attendantName se ha eliminado correctamente.";
         return redirect('/attendants')->with(compact('notification'));
 
     }

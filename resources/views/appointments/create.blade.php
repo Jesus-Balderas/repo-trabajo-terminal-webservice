@@ -5,7 +5,7 @@
         <div class="card-header border-0">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="mb-0">Hacer una nueva reservación</h3>
+                    <h3 class="mb-0">Registar nueva reservación</h3>
                 </div>
                 <div class="col text-right">
                     <a href="#" class="btn btn-sm btn-default">
@@ -53,26 +53,22 @@
                                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                             </div>
                             <input class="form-control datepicker" placeholder="Seleccionar fecha" id="date" type="text"
-                                name="scheduled_date" value="{{ old('scheduled_date'), date('Y-m-d') }}"
-                                data-date-format="yyyy-mm-dd" data-date-start-date="{{ date('Y-m-d') }}"
-                                data-date-end-date="+30d">
+                                name="scheduled_date" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd"
+                                data-date-start-date="{{ date('Y-m-d') }}" data-date-end-date="+15d">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="day">Día:</label>
-                        <select name="day" id="day" class="form-control" required>
+                        <label for="computer">Computadoras:</label>
+                        <select name="computer_id" id="computer" class="form-control" required>
                         </select>
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="hours">Hora:</label>
+                        <div id="hours">
 
-                <div class="form-group">
-                    <label for="address">Hora:</label>
-                    <div id="hours">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="address">Computadora:</label>
-                    <div id="hours">
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">
@@ -84,24 +80,5 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-    <script>
-        let $attendant;
-        $(function(){
-            const $laboratory = $('#laboratory');
-            $attendant = $('#attendant')
-            $laboratory.change(() => {
-            const laboratoryId = $laboratory.val();
-            const url = `/laboratories/${laboratoryId}/attendants`;
-            $.getJSON(url, onAttendantsLoaded);
-            });
-        });
-
-        function onAttendantsLoaded(attendants){
-            let htmlOptions = '';
-            attendants.forEach(attendant => {
-                htmlOptions += `<option value ="${attendant.id}">${attendant.name}</option>`;
-            });
-            $attendant.html(htmlOptions);
-        }
-</script>
+    <script src={{ asset('/js/appointments/create.js') }}></script>
 @endsection

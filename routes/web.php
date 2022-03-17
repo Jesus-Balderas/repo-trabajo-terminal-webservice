@@ -104,9 +104,14 @@ Route::post('/schedule/{laboratory}/store', [App\Http\Controllers\ScheduleLabora
 //Computers
 Route::get('/laboratory/computers/{laboratory}', [\App\Http\Controllers\ComputerController::class, 'index']);
 Route::get('/laboratory/computers/{laboratory}/create', [\App\Http\Controllers\ComputerController::class, 'create']);
-Route::post('/laboratory/computers', [App\Http\Controllers\ComputerController::class, 'store']);
+Route::post('/laboratory/computers/{laboratory}/store', [App\Http\Controllers\ComputerController::class, 'store']);
 Route::delete('/laboratory/computers/{computers}/delete', [App\Http\Controllers\ComputerController::class, 'destroy']);
 
 Route::get('/appointments/create', [\App\Http\Controllers\AppointmentController::class, 'create'])->name('appointments.create');
-//JSON
-Route::get('/laboratories/{laboratory}/attendants', [App\Http\Controllers\Api\LaboratoryController::class,'attendants']);
+
+Route::middleware(['auth:student'])->group(function () {
+    //JSON
+    Route::get('/laboratories/{laboratory}/attendants', [App\Http\Controllers\Api\LaboratoryController::class,'attendants']);
+    Route::get('/scheduleLaboratory/hours', [App\Http\Controllers\Api\ScheduleController::class,'hours']);
+    Route::get('/computerLaboratory/computers', [App\Http\Controllers\Api\ComputerController::class,'computers']);
+});

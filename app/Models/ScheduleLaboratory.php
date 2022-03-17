@@ -23,7 +23,7 @@ class ScheduleLaboratory extends Model
             'nine_time',
             'laboratory_id'
     ];
-    
+
     public function laboratory()
     {
         //UN HORARIO SE ASOCIA CON UN LABORATORIO

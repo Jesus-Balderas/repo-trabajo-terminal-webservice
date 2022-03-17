@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendant;
-use App\Models\Computer;
 use App\Models\Laboratory;
-use App\Models\ScheduleLaboratory;
 use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;

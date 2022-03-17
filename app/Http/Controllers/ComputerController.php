@@ -23,7 +23,7 @@ class ComputerController extends Controller
         return view('computers.create', compact('laboratories'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         //dd($request->toArray());
 
@@ -49,9 +49,18 @@ class ComputerController extends Controller
             ]);
         }
 
-        $notification = 'Las computadoras se han registrado existosamente.';
-        return redirect('/laboratory/computers/'.$laboratories, compact('notification'));
+        $notification = 'Las computadoras se han registrado exitosamente.';
+        //return back()->with(compact('notification'));
+        return redirect('/laboratory/computers/'. $id)->with(compact('notification'));
 
+    }
+
+    public function destroy($id)
+    {
+        //dd($id);
+        $computers = Computer::find($id)->delete(); 
+        $notification = "La computadora se ha eliminado correctamente.";
+        return back()->with(compact('notification'));
     }
 
     
