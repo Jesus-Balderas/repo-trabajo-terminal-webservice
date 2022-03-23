@@ -108,6 +108,7 @@ Route::post('/laboratory/computers/{laboratory}/store', [App\Http\Controllers\Co
 Route::delete('/laboratory/computers/{computers}/delete', [App\Http\Controllers\ComputerController::class, 'destroy']);
 
 Route::get('/appointments/create', [\App\Http\Controllers\AppointmentController::class, 'create'])->name('appointments.create');
+Route::post('/appointments/store', [\App\Http\Controllers\AppointmentController::class, 'store'])->name('appointments.store');
 
 Route::middleware(['auth:student'])->group(function () {
     //JSON

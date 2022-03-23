@@ -18,6 +18,7 @@ class ComputerController extends Controller
         $computers = Computer::where('status', 'DISPONIBLE')
                     ->where('laboratory_id', '=', $laboratory)
                     ->get(['id','num_pc']);
+                    
         return response()->json($computers);
 
     }

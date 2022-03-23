@@ -11,7 +11,7 @@ class LaboratoryController extends Controller
     
     public function laboratories()
     {
-        $laboratories = Laboratory::all();
+        $laboratories = Laboratory::all(['id','name','classroom','edifice','status','file_path']);
         return $laboratories;
     }
     

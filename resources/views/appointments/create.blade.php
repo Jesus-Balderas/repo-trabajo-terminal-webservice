@@ -25,8 +25,14 @@
                     </ul>
                 </div>
             @endif
-
-            <form action="#" method="POST">
+            <div class="card-body">
+                @if (session('notification'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('notification') }}
+                    </div>
+                @endif
+            </div>
+            <form action="{{ route('appointments.store') }}" method="POST">
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -67,7 +73,9 @@
                     <div class="form-group col-md-6">
                         <label for="hours">Hora:</label>
                         <div id="hours">
-
+                            <div class="alert alert-info" role="alert">
+                                Selecciona un laboratorio y una fecha para ver sus horas disponibles.
+                            </div>
                         </div>
                     </div>
                 </div>
