@@ -111,6 +111,8 @@ Route::get('/appointments/create', [\App\Http\Controllers\AppointmentController:
 Route::post('/appointments/store', [\App\Http\Controllers\AppointmentController::class, 'store'])->name('appointments.store');
 
 Route::middleware(['auth:student'])->group(function () {
+    
+    Route::get('/appointments', [\App\Http\Controllers\AppointmentController::class, 'index']);
     //JSON
     Route::get('/laboratories/{laboratory}/attendants', [App\Http\Controllers\Api\LaboratoryController::class,'attendants']);
     Route::get('/scheduleLaboratory/hours', [App\Http\Controllers\Api\ScheduleController::class,'hours']);

@@ -18,4 +18,25 @@ class Reservation extends Model
         'schedule_date',
         'schedule_time'
     ];
+
+    public function laboratory()
+    {
+        return $this->belongsTo(Laboratory::class);
+    }
+
+    public function attendant()
+    {
+        return $this->belongsTo(Attendant::class);
+    }
+
+    public function computer()
+    {
+        return $this->belongsTo(Computer::class);
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+
 }

@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class AppointmentController extends Controller
 {
+    public function index(){
+
+        $reservations = Reservation::all();
+        return view('appointments.index', compact('reservations'));
+    }
+    
     public function create()
     {
         $laboratories = Laboratory::all();

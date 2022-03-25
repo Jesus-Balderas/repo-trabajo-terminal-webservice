@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/laboratories', [App\Http\Controllers\Api\LaboratoryController::class,'laboratories']);
 Route::get('/careers', [App\Http\Controllers\Api\CareerController::class,'careers']);
 Route::get('/scheduleLaboratory/hours', [App\Http\Controllers\Api\ScheduleController::class,'hours']);
+Route::get('/students/reservations', [App\Http\Controllers\Api\StudentController::class,'getReservationsReserved']);
+Route::get('/attendants/reservations', [App\Http\Controllers\Api\AttendantController::class,'getReservationsReserved']);
