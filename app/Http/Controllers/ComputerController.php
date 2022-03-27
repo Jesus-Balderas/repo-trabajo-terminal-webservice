@@ -44,7 +44,7 @@ class ComputerController extends Controller
 
             Computer::create([
                 'num_pc' => $i,
-                'status' => 'DISPONIBLE',
+                'status' => 'Disponible',
                 'laboratory_id' => $laboratories
             ]);
         }

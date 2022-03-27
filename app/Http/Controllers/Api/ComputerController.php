@@ -15,7 +15,7 @@ class ComputerController extends Controller
         ];
         $this->validate($request, $rules);
         $laboratory = $request->input('laboratory_id');
-        $computers = Computer::where('status', 'DISPONIBLE')
+        $computers = Computer::where('status', 'Disponible')
                     ->where('laboratory_id', '=', $laboratory)
                     ->get(['id','num_pc']);
                     
