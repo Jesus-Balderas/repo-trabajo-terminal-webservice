@@ -13,7 +13,8 @@ class AppointmentController extends Controller
 {
     public function index(){
 
-        $reservations = Reservation::all();
+        $studentId = Auth::guard('student')->user()->id;
+        $reservations = Reservation::where('student_id', $studentId)->get();
         return view('appointments.index', compact('reservations'));
     }
     
@@ -29,7 +30,7 @@ class AppointmentController extends Controller
         $rules = [
 
             'laboratory_id' => 'required',
-            'hour' => 'required|between:07:00,20:00',
+            'hour' => 'required',
         ];
 
         $messages = [
