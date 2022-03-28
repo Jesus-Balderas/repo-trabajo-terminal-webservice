@@ -16,7 +16,7 @@
   <link href="{{ asset('vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
   <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
   <!-- Argon CSS -->
-  <link type="text/css" href="{{ secure_secure_asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
+  <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
 </head>
 
 <body class="bg-default">
