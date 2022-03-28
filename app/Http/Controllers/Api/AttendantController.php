@@ -19,6 +19,7 @@ class AttendantController extends Controller
                                  'computers.num_pc', 'reservations.status', 'reservations.schedule_date', 
                                  'reservations.schedule_time')
                         ->where('reservations.attendant_id', '=', $attendantId)
+                        ->where('reservations.status', '=', 'Reservada')
                         ->get(['id', 'boleta', 'student','num_pc', 'status', 'schedule_date','schedule_time']);
         return $reservation;
     }
