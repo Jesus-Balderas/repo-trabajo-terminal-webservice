@@ -87,6 +87,6 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ secure_asset('/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-    <script src={{ secure_asset('/js/appointments/create.js') }}></script>
+    <script src="{{ asset('/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src={{ asset('/js/appointments/create.js') }}></script>
 @endsection
