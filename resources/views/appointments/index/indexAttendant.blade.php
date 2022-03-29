@@ -36,13 +36,13 @@
                         <!--ITERAMOS LA COLECCIÓN DE DATOS -->
                         <tr>
                             <th scope="row">
-                                {{ $reservation->boleta }}
+                                {{ $reservation->student->num_boleta }}
                             </th>
                             <th scope="row">
-                                {{ $reservation->student }}
+                                {{ $reservation->student->name }}
                             </th>
                             <th scope="row">
-                                {{ $reservation->num_pc }}
+                                {{ $reservation->computer->num_pc }}
                             </th>
                             <th scope="row">
                                 {{ $reservation->status }}
