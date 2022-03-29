@@ -4,7 +4,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('/appointments') }}">
+    <a class="nav-link" href="{{ url('/appointments/student') }}">
         <i class="ni ni-hat-3 text-blue"></i> Mis reservaciones
     </a>
 </li>

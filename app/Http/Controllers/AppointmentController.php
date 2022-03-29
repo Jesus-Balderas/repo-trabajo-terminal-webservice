@@ -12,9 +12,32 @@ class AppointmentController extends Controller
 {
     public function index(){
 
+        $reservations = Reservation::all();
+
+        return view('appointments.index.index', compact('reservations'));
+    }
+
+    public function indexReservationsStudent(){
+
         $studentId = Auth::guard('student')->user()->id;
         $reservations = Reservation::where('student_id', $studentId)->get();
-        return view('appointments.index', compact('reservations'));
+
+        return view('appointments.index.indexStudent', compact('reservations'));
+    }
+    
+    public function indexReservationsAttendant(){
+
+        $attendantId = Auth::guard('attendant')->user()->id;
+        $reservations = Reservation::join('students', 'reservations.student_id', '=', 'students.id')
+                        ->join('computers', 'reservations.computer_id', '=', 'computers.id')
+                        ->select('reservations.id', 'students.num_boleta as boleta', 'students.name as student',
+                                 'computers.num_pc', 'reservations.status', 'reservations.schedule_date', 
+                                 'reservations.schedule_time')
+                        ->where('reservations.attendant_id', '=', $attendantId)
+                        ->where('reservations.status', '=', 'Reservada')
+                        ->get(['id', 'boleta', 'student','num_pc', 'status', 'schedule_date','schedule_time']);
+
+        return view('appointments.index.indexAttendant', compact('reservations'));
     }
     
     public function create()

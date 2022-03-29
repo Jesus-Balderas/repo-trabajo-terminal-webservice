@@ -112,9 +112,21 @@ Route::post('/appointments/store', [\App\Http\Controllers\AppointmentController:
 
 Route::middleware(['auth:student'])->group(function () {
     
-    Route::get('/appointments', [\App\Http\Controllers\AppointmentController::class, 'index']);
+    Route::get('/appointments/student', [\App\Http\Controllers\AppointmentController::class, 'indexReservationsStudent']);
     //JSON
     Route::get('/laboratories/{laboratory}/attendants', [App\Http\Controllers\Api\LaboratoryController::class,'attendants']);
     Route::get('/scheduleLaboratory/hours', [App\Http\Controllers\Api\ScheduleController::class,'hours']);
     Route::get('/computerLaboratory/computers', [App\Http\Controllers\Api\ComputerController::class,'computers']);
+});
+
+Route::middleware(['auth:attendant'])->group(function () {
+    
+    Route::get('/appointments/attendant', [\App\Http\Controllers\AppointmentController::class, 'indexReservationsAttendant']);
+    
+});
+
+Route::middleware(['auth:web'])->group(function () {
+    
+    Route::get('/appointments', [\App\Http\Controllers\AppointmentController::class, 'index']);
+    
 });

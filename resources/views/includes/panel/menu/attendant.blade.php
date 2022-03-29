@@ -8,14 +8,9 @@
         <i class="ni ni-laptop text-info"></i> Laboratorios
     </a>
 </li>
-<li class="nav-item">
-    <a class="nav-link" href="#">
-        <i class="ni ni-time-alarm text-success"></i> Mis horarios de tiempo libre
-    </a>
-</li>
 
 <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{{ url('/appointments/attendant') }}">
         <i class="ni ni-calendar-grid-58 text-red"></i> Reservaciones
     </a>
 </li>
