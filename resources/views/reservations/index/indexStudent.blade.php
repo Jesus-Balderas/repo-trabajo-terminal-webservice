@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             @if (session('notification'))
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-warning" role="alert">
                     {{ session('notification') }}
                 </div>
             @endif
@@ -55,14 +55,12 @@
                             </th>
                             <td>
                                 @if (Auth::guard('student')->check())
-                                    <form action="{{ url('/attendants/' . $reservation->id . '/delete') }}"
+                                    <form action="{{ url('/reservations/student/' . $reservation->id . '/cancel') }}"
                                         method="POST">
                                         @csrf
-                                        @method('DELETE')
                                         <button class="btn btn-sm btn-danger" type="submit">Cancelar</button>
                                     </form>
                                 @endif
-
                             </td>
                         </tr>
                     @endforeach

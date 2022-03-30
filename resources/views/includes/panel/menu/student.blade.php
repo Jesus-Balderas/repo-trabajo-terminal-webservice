@@ -14,27 +14,27 @@
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('/appointments/student') }}">
+    <a class="nav-link" href="{{ url('/reservations/student') }}">
         <i class="ni ni-calendar-grid-58 text-blue"></i> Mis Solicitudes de Reservaciones
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('/appointments/student') }}">
+    <a class="nav-link" href="{{ url('/reservations/student/cancel') }}">
         <i class="ni ni-calendar-grid-58 text-yellow"></i> Mis Reservaciones Canceladas
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('/appointments/student') }}">
+    <a class="nav-link" href="{{ url('/reservations/student/accept') }}">
         <i class="ni ni-calendar-grid-58 text-green"></i> Mis Reservaciones Aceptadas
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('/appointments/student') }}">
+    <a class="nav-link" href="{{ url('/reservations/student/reject') }}">
         <i class="ni ni-calendar-grid-58 text-red"></i> Mis Reservaciones Rechazadas
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('/appointments/student') }}">
+    <a class="nav-link" href="{{ url('/reservations/student/finish') }}">
         <i class="ni ni-calendar-grid-58 text-orange"></i> Mis Reservaciones Finalizadas
     </a>
 </li>

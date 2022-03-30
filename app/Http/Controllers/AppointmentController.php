@@ -14,13 +14,13 @@ class AppointmentController extends Controller
 
         $reservations = Reservation::all();
 
-        return view('appointments.index.index', compact('reservations'));
+        return view('reservations.index.index', compact('reservations'));
     }
 
     public function create()
     {
         $laboratories = Laboratory::all();
-        return view('appointments.create', compact('laboratories'));
+        return view('reservations.create', compact('laboratories'));
     }
 
     public function store(Request $request)

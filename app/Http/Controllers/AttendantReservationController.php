@@ -15,7 +15,7 @@ class AttendantReservationController extends Controller
                         ->where('status', 'Reservada')
                         ->get();
 
-        return view('appointments.index.indexAttendant', compact('reservationsReserved'));
+        return view('reservations.index.indexAttendant', compact('reservationsReserved'));
     }
 
     public function indexReservationsAceppted(){
@@ -24,7 +24,7 @@ class AttendantReservationController extends Controller
         $reservationsAccepted = Reservation::where('attendant_id', $attendantId)
                         ->where('status', 'Aceptada')
                         ->get();
-        return view('appointments.accept.acceptAttendant', compact('reservationsAccepted'));
+        return view('reservations.accept.acceptAttendant', compact('reservationsAccepted'));
     }
 
     public function indexReservationsRejected(){
@@ -33,7 +33,7 @@ class AttendantReservationController extends Controller
         $reservationsRejected = Reservation::where('attendant_id', $attendantId)
                         ->where('status', 'Rechazada')
                         ->get();
-        return view('appointments.reject.rejectAttendant', compact('reservationsRejected'));
+        return view('reservations.reject.rejectAttendant', compact('reservationsRejected'));
     }
 
     public function indexReservationsFinished(){
@@ -42,7 +42,7 @@ class AttendantReservationController extends Controller
         $reservationsFinished = Reservation::where('attendant_id', $attendantId)
                         ->where('status', 'Finalizada')
                         ->get();
-        return view('appointments.finish.finishAttendant', compact('reservationsFinished'));
+        return view('reservations.finish.finishAttendant', compact('reservationsFinished'));
     }
 
     //Este metodo rechaza una solicitud de reservación por parte del encargado

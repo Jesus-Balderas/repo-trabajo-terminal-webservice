@@ -24,7 +24,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('/appointments') }}">
+    <a class="nav-link" href="{{ url('/reservations') }}">
         <i class="ni ni-calendar-grid-58 text-red"></i> Reservaciones
     </a>
 </li>
