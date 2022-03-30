@@ -110,21 +110,27 @@ Route::delete('/laboratory/computers/{computers}/delete', [App\Http\Controllers\
 Route::get('/appointments/create', [\App\Http\Controllers\AppointmentController::class, 'create'])->name('appointments.create');
 Route::post('/appointments/store', [\App\Http\Controllers\AppointmentController::class, 'store'])->name('appointments.store');
 
+//Rutas de las reservaciones para el alumno
 Route::middleware(['auth:student'])->group(function () {
     
-    Route::get('/appointments/student', [\App\Http\Controllers\AppointmentController::class, 'indexReservationsStudent']);
+    Route::get('/appointments/student', [\App\Http\Controllers\StudentReservationController::class, 'indexReservations']);
     //JSON
     Route::get('/laboratories/{laboratory}/attendants', [App\Http\Controllers\Api\LaboratoryController::class,'attendants']);
     Route::get('/scheduleLaboratory/hours', [App\Http\Controllers\Api\ScheduleController::class,'hours']);
     Route::get('/computerLaboratory/computers', [App\Http\Controllers\Api\ComputerController::class,'computers']);
 });
-
+//Rutas de las reservaciones para el encargado
 Route::middleware(['auth:attendant'])->group(function () {
     
-    Route::get('/appointments/attendant', [\App\Http\Controllers\AppointmentController::class, 'indexReservationsAttendant']);
-    
+    Route::get('/appointments/attendant', [\App\Http\Controllers\AttendantReservationController::class, 'indexReservations']);
+    Route::get('/appointments/attendant/accept', [\App\Http\Controllers\AttendantReservationController::class, 'indexReservationsAceppted']);
+    Route::get('/appointments/attendant/reject', [\App\Http\Controllers\AttendantReservationController::class, 'indexReservationsRejected']);
+    Route::get('/appointments/attendant/finish', [\App\Http\Controllers\AttendantReservationController::class, 'indexReservationsFinished']);
+    Route::post('/appointments/attendant/{reservation}/reject', [\App\Http\Controllers\AttendantReservationController::class, 'reject']);
+    Route::post('/appointments/attendant/{reservation}/accept', [\App\Http\Controllers\AttendantReservationController::class, 'accept']);
+    Route::post('/appointments/attendant/{reservation}/finish', [\App\Http\Controllers\AttendantReservationController::class, 'finish']);
 });
-
+//Rutas de las reservaciones para el administrador
 Route::middleware(['auth:web'])->group(function () {
     
     Route::get('/appointments', [\App\Http\Controllers\AppointmentController::class, 'index']);

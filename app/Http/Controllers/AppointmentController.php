@@ -17,22 +17,6 @@ class AppointmentController extends Controller
         return view('appointments.index.index', compact('reservations'));
     }
 
-    public function indexReservationsStudent(){
-
-        $studentId = Auth::guard('student')->user()->id;
-        $reservations = Reservation::where('student_id', $studentId)->get();
-
-        return view('appointments.index.indexStudent', compact('reservations'));
-    }
-    
-    public function indexReservationsAttendant(){
-
-        $attendantId = Auth::guard('attendant')->user()->id;
-        $reservations = Reservation::where('attendant_id', $attendantId)->get();
-
-        return view('appointments.index.indexAttendant', compact('reservations'));
-    }
-    
     public function create()
     {
         $laboratories = Laboratory::all();

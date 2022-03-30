@@ -11,7 +11,25 @@
 
 <li class="nav-item">
     <a class="nav-link" href="{{ url('/appointments/attendant') }}">
-        <i class="ni ni-calendar-grid-58 text-red"></i> Reservaciones
+        <i class="ni ni-calendar-grid-58 text-blue"></i> Solicitudes de Reservaciones
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ url('/appointments/attendant/accept') }}">
+        <i class="ni ni-calendar-grid-58 text-green"></i> Reservaciones Aceptadas
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ url('/appointments/attendant/reject') }}">
+        <i class="ni ni-calendar-grid-58 text-red"></i> Reservaciones Rechazadas
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ url('/appointments/attendant/finish') }}">
+        <i class="ni ni-calendar-grid-58 text-yellow"></i> Reservaciones Finalizadas
     </a>
 </li>
 

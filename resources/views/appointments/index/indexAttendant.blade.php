@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($reservations as $reservation)
+                    @foreach ($reservationsReserved as $reservation)
                         <!--ITERAMOS LA COLECCIÓN DE DATOS -->
                         <tr>
                             <th scope="row">
@@ -55,11 +55,15 @@
                             </th>
                             <td>
                                 @if (Auth::guard('attendant')->check())
-                                    <form action="{{ url('/attendants/' . $reservation->id . '/delete') }}"
-                                        method="POST">
+                                    <form action="{{ url('/appointments/attendant/' . $reservation->id . '/reject') }}"
+                                        method="POST" class="d-inline-block">
                                         @csrf
-                                        @method('DELETE')
                                         <button class="btn btn-sm btn-danger" type="submit">Rechazar</button>
+                                    </form>
+                                    <form action="{{ url('/appointments/attendant/' . $reservation->id . '/accept') }}"
+                                        method="POST" class="d-inline-block">
+                                        @csrf
+                                        <button class="btn btn-sm btn-success" type="submit">Aceptar</button>
                                     </form>
                                 @endif
 
