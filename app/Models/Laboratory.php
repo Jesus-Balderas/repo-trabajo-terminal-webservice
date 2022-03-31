@@ -19,6 +19,13 @@ class Laboratory extends Model
         'attendant_id'
     ];
 
+    protected $hidden = [
+        
+        'attendant_id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function attendant()
     {
         //UN LABORATORIO PERTENECE A UN ENCARGADO

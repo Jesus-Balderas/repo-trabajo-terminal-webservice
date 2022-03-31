@@ -55,7 +55,19 @@ return [
         'attendant' => [
             'driver' => 'session',
             'provider' => 'attendants',
+        ],
+
+        'api-student' => [
+            'driver' => 'jwt',
+            'provider' => 'students',
+        ],
+
+        'api-attendant' => [
+            'driver' => 'jwt',
+            'provider' => 'attendants',
         ]
+
+
     ],
 
     /*

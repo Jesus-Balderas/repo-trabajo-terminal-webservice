@@ -14,8 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::post('/login/student', [App\Http\Controllers\Api\StudentAuthController::class,'login']);
+Route::post('/login/attendant', [App\Http\Controllers\Api\AttendantAuthController::class,'login']);
+
+
+Route::middleware('auth:api-student')->group(function ()
+{
+    Route::get('/user/student', [App\Http\Controllers\Api\StudentAuthController::class,'show'] );
+    Route::post('/logout/student', [App\Http\Controllers\Api\StudentAuthController::class,'logout']);
+});
+
+Route::middleware('auth:api-attendant')->group(function ()
+{
+    Route::get('/user/attendant', [App\Http\Controllers\Api\AttendantAuthController::class,'show'] );
+    Route::post('/logout/attendant', [App\Http\Controllers\Api\AttendantAuthController::class,'logout']);
 });
 
 Route::get('/laboratories', [App\Http\Controllers\Api\LaboratoryController::class,'laboratories']);
