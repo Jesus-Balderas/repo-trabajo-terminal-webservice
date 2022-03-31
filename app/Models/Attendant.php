@@ -50,4 +50,9 @@ class Attendant extends Authenticatable
         //UN ENCARGADO PERTENECE A UN LABORATORIO
         return $this->hasMany(Laboratory::class);
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }
