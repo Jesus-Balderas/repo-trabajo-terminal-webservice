@@ -34,9 +34,12 @@ Route::middleware('auth:api-attendant')->group(function ()
 
 Route::get('/laboratories', [App\Http\Controllers\Api\LaboratoryController::class,'laboratories']);
 Route::get('/careers', [App\Http\Controllers\Api\CareerController::class,'careers']);
+//Rutas para API reservacion
+Route::get('/laboratories/{laboratory}/attendants', [App\Http\Controllers\Api\LaboratoryController::class,'attendants']);
 Route::get('/scheduleLaboratory/hours', [App\Http\Controllers\Api\ScheduleController::class,'hours']);
 Route::get('/computerLaboratory/computers', [App\Http\Controllers\Api\ComputerController::class,'computers']);
 Route::get('/students/reservations', [App\Http\Controllers\Api\StudentController::class,'getReservationsReserved']);
+
 //Devuelve las solicitudes de Reservaciones para el encargado
 Route::get('/attendants/reservations', [App\Http\Controllers\Api\AttendantController::class,'getReservationsReserved']);
 Route::get('/attendants/reservations/reject', [App\Http\Controllers\Api\AttendantController::class,'getReservationsRejected']);
