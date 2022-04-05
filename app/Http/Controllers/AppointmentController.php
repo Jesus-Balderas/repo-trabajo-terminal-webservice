@@ -12,15 +12,15 @@ class AppointmentController extends Controller
 {
     public function index(){
 
-        $studentId = Auth::guard('student')->user()->id;
-        $reservations = Reservation::where('student_id', $studentId)->get();
-        return view('appointments.index', compact('reservations'));
+        $reservations = Reservation::all();
+
+        return view('reservations.index.index', compact('reservations'));
     }
-    
+
     public function create()
     {
         $laboratories = Laboratory::all();
-        return view('appointments.create', compact('laboratories'));
+        return view('reservations.create', compact('laboratories'));
     }
 
     public function store(Request $request)

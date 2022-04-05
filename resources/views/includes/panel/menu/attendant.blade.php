@@ -8,15 +8,28 @@
         <i class="ni ni-laptop text-info"></i> Laboratorios
     </a>
 </li>
+
 <li class="nav-item">
-    <a class="nav-link" href="#">
-        <i class="ni ni-time-alarm text-success"></i> Mis horarios de tiempo libre
+    <a class="nav-link" href="{{ url('/reservations/attendant') }}">
+        <i class="ni ni-calendar-grid-58 text-blue"></i> Solicitudes de Reservaciones
     </a>
 </li>
 
 <li class="nav-item">
-    <a class="nav-link" href="#">
-        <i class="ni ni-calendar-grid-58 text-red"></i> Reservaciones
+    <a class="nav-link" href="{{ url('/reservations/attendant/accept') }}">
+        <i class="ni ni-calendar-grid-58 text-green"></i> Reservaciones Aceptadas
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ url('/reservations/attendant/reject') }}">
+        <i class="ni ni-calendar-grid-58 text-red"></i> Reservaciones Rechazadas
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ url('/reservations/attendant/finish') }}">
+        <i class="ni ni-calendar-grid-58 text-yellow"></i> Reservaciones Finalizadas
     </a>
 </li>
 
