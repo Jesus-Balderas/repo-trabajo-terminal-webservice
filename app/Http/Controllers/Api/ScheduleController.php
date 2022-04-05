@@ -35,22 +35,25 @@ class ScheduleController extends Controller
                     ]);
                     //->toArray();
         //$data = [];
-        if (!$schedule) {
+        if ($schedule) {
 
-            return [];
+            $data = [
+                'one' => date('H:i', strtotime($schedule->one_time)),
+                'two' => date('H:i', strtotime($schedule->two_time)),
+                'three' => date('H:i', strtotime($schedule->three_time)),
+                'four' => date('H:i', strtotime($schedule->four_time)),
+                'five' => date('H:i', strtotime($schedule->five_time)),
+                'six' => date('H:i', strtotime($schedule->six_time)),
+                'seven' => date('H:i', strtotime($schedule->seven_time)),
+                'eight' => date('H:i', strtotime($schedule->eight_time)),
+                'nine' => date('H:i', strtotime($schedule->nine_time)),
+            ];
+            
+        } else {
+
+            $data = [];
         }
-        $data = [
-            'one' => date('H:i', strtotime($schedule->one_time)),
-            'two' => date('H:i', strtotime($schedule->two_time)),
-            'three' => date('H:i', strtotime($schedule->three_time)),
-            'four' => date('H:i', strtotime($schedule->four_time)),
-            'five' => date('H:i', strtotime($schedule->five_time)),
-            'six' => date('H:i', strtotime($schedule->six_time)),
-            'seven' => date('H:i', strtotime($schedule->seven_time)),
-            'eight' => date('H:i', strtotime($schedule->eight_time)),
-            'nine' => date('H:i', strtotime($schedule->nine_time)),
-        ];
-    
+        
         //dd($data);
         //return $schedule->attributesToArray();
         return response()->json($data);
