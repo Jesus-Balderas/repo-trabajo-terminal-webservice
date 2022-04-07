@@ -17,7 +17,7 @@ class LaboratoryController extends Controller
     
     public function attendants(Laboratory $laboratory)
     {
-        return $laboratory->attendant()->get(['id', 'name']);
+        return $laboratory->attendant()->get();
 
     }
     
