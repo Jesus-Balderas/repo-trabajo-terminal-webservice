@@ -15,6 +15,7 @@ class StudentAuthController extends Controller
         if (Auth::guard('api-student')->attempt($credentials)) {
 
             $student = Auth::guard('api-student')->user();
+            $career = Auth::guard('api-student')->user()->career;
             $token = Auth::guard('api-student')->attempt($credentials);
             $success = true;
             
