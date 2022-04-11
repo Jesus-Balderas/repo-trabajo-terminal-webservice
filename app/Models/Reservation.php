@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,12 @@ class Reservation extends Model
         'student_id',
         'schedule_date',
         'schedule_time'
+    ];
+
+    protected $hidden = [
+        'laboratory_id',
+        'attendant_id',
+        'computer_id',
     ];
 
     public function laboratory()
@@ -37,6 +44,11 @@ class Reservation extends Model
     public function student()
     {
         return $this->belongsTo(Student::class);
+    }
+
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->format('Y-m-d');
     }
 
 }

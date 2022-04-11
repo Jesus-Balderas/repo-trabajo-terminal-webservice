@@ -24,6 +24,7 @@ Route::middleware('auth:api-student')->group(function ()
 {
     Route::get('/user/student', [App\Http\Controllers\Api\StudentAuthController::class,'show'] );
     Route::post('/logout/student', [App\Http\Controllers\Api\StudentAuthController::class,'logout']);
+    Route::get('/students/reservations', [App\Http\Controllers\Api\StudentController::class,'indexReservations']);
 });
 
 Route::middleware('auth:api-attendant')->group(function ()
@@ -38,7 +39,6 @@ Route::get('/careers', [App\Http\Controllers\Api\CareerController::class,'career
 Route::get('/laboratories/{laboratory}/attendants', [App\Http\Controllers\Api\LaboratoryController::class,'attendants']);
 Route::get('/scheduleLaboratory/hours', [App\Http\Controllers\Api\ScheduleController::class,'hours']);
 Route::get('/computerLaboratory/computers', [App\Http\Controllers\Api\ComputerController::class,'computers']);
-Route::get('/students/reservations', [App\Http\Controllers\Api\StudentController::class,'getReservationsReserved']);
 
 //Devuelve las solicitudes de Reservaciones para el encargado
 Route::get('/attendants/reservations', [App\Http\Controllers\Api\AttendantController::class,'getReservationsReserved']);

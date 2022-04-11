@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -54,6 +55,11 @@ class Student extends Authenticatable implements JWTSubject
     {
         //UN ALUMNO SE ASOCIA CON UNA SOLA CARRERA
         return $this->belongsTo(Career::class);
+    }
+
+    public function asStudentReservations()
+    {
+        return $this->hasMany(Reservation::class, 'student_id');
     }
 
     public function getJWTIdentifier()

@@ -3,25 +3,39 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     
-    public function getReservationsReserved(Request $request)
+    public function indexReservations()
     {
-        $studentId = $request->input('student_id');
+        $student = Auth::guard('api-student')->user();
+        $reservations =  $student->asStudentReservations()
+         ->where('status', 'Rechazada')
+         ->with([
+                    'laboratory' => function($query) {
+                        $query->select('id', 'name');
+                    },
+                    'attendant' => function($query) {
+                        $query->select('id', 'name');
+                    }, 
+                    'computer' => function($query) {
+                        $query->select('id', 'num_pc');
+                    }
+                ])
+         ->get([
+                "id",
+                "laboratory_id",
+                "attendant_id",
+                "computer_id",
+                "schedule_date",
+                "schedule_time",
+                "status",
+                "created_at",
+            ]);
 
-        $reservation = Reservation::join('laboratories', 'reservations.laboratory_id', '=', 'laboratories.id')
-                        ->join('computers', 'reservations.computer_id', '=', 'computers.id')
-                        ->join('attendants', 'reservations.attendant_id', '=', 'attendants.id')
-                        ->select('reservations.id', 'laboratories.name as laboratory', 'attendants.name as attendant',
-                                 'computers.num_pc', 'reservations.status', 'reservations.schedule_date', 
-                                 'reservations.schedule_time')
-                        ->where('reservations.student_id', '=', $studentId)
-                        ->get(['id', 'laboratory', 'attendant', 'num_pc', 'status', 'schedule_date', 'schedule_time']);
-        return $reservation;         
-        
+         return $reservations;
     }
 }
