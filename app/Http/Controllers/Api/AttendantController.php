@@ -3,39 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Reservation;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AttendantController extends Controller
 {
     
-    public function getReservationsReserved(Request $request)
+    public function indexReservations()
     {
-        $attendantId = $request->input('attendant_id');
-
-        $reservation = Reservation::join('students', 'reservations.student_id', '=', 'students.id')
-                        ->join('computers', 'reservations.computer_id', '=', 'computers.id')
-                        ->select('reservations.id', 'students.num_boleta as boleta', 'students.name as student',
-                                 'computers.num_pc', 'reservations.status', 'reservations.schedule_date', 
-                                 'reservations.schedule_time')
-                        ->where('reservations.attendant_id', '=', $attendantId)
-                        ->where('reservations.status', '=', 'Reservada')
-                        ->get(['id', 'boleta', 'student','num_pc', 'status', 'schedule_date','schedule_time']);
-        return $reservation;
+        $attendant = Auth::guard('api-attendant')->user();
+        $reservations =  $attendant->asAttendantReservations;
+        return $reservations;
     }
 
-    public function getReservationsRejected(Request $request)
-    {
-        $attendantId = $request->input('attendant_id');
-        $reservation = Reservation::join('students', 'reservations.student_id', '=', 'students.id')
-                        ->join('computers', 'reservations.computer_id', '=', 'computers.id')
-                        ->select('reservations.id', 'students.num_boleta as boleta', 'students.name as student',
-                                 'computers.num_pc', 'reservations.status', 'reservations.schedule_date', 
-                                 'reservations.schedule_time')
-                        ->where('reservations.attendant_id', '=', $attendantId)
-                        ->where('reservations.status', '=', 'Rechazada')
-                        ->get(['id', 'boleta', 'student','num_pc', 'status', 'schedule_date','schedule_time']);
-        return $reservation;
-
-    }
+    
 }

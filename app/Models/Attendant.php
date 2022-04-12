@@ -54,9 +54,9 @@ class Attendant extends Authenticatable implements JWTSubject
         return $this->hasMany(Laboratory::class);
     }
 
-    public function reservations()
+    public function asAttendantReservations()
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(Reservation::class, 'attendant_id');
     }
 
     public function getJWTIdentifier()
