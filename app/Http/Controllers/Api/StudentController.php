@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -13,7 +12,7 @@ class StudentController extends Controller
     {
         $student = Auth::guard('api-student')->user();
         $reservations =  $student->asStudentReservations()
-         ->where('status', 'Rechazada')
+         ->where('status', 'Reservada')
          ->with([
                     'laboratory' => function($query) {
                         $query->select('id', 'name');
