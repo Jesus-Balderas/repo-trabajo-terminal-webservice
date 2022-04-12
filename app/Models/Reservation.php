@@ -24,6 +24,7 @@ class Reservation extends Model
         'laboratory_id',
         'attendant_id',
         'computer_id',
+        'student_id',
     ];
 
     public function laboratory()
