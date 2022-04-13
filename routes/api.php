@@ -40,7 +40,3 @@ Route::get('/careers', [App\Http\Controllers\Api\CareerController::class,'career
 Route::get('/laboratories/{laboratory}/attendants', [App\Http\Controllers\Api\LaboratoryController::class,'attendants']);
 Route::get('/scheduleLaboratory/hours', [App\Http\Controllers\Api\ScheduleController::class,'hours']);
 Route::get('/computerLaboratory/computers', [App\Http\Controllers\Api\ComputerController::class,'computers']);
-
-//Devuelve las solicitudes de Reservaciones para el encargado
-Route::get('/attendants/reservations', [App\Http\Controllers\Api\AttendantController::class,'getReservationsReserved']);
-Route::get('/attendants/reservations/reject', [App\Http\Controllers\Api\AttendantController::class,'getReservationsRejected']);
