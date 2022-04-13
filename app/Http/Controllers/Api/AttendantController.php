@@ -15,7 +15,7 @@ class AttendantController extends Controller
         ->where('status', 'Reservada')
         ->with([
             'student' => function($query){
-                $query->select('id', 'name');
+                $query->select('id', 'name', 'num_boleta');
 
             },
             'computer' => function($query){
