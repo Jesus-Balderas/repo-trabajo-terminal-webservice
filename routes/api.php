@@ -25,6 +25,7 @@ Route::middleware('auth:api-student')->group(function ()
     Route::get('/user/student', [App\Http\Controllers\Api\StudentAuthController::class,'show'] );
     Route::post('/logout/student', [App\Http\Controllers\Api\StudentAuthController::class,'logout']);
     Route::get('/students/reservations', [App\Http\Controllers\Api\StudentController::class,'indexReservations']);
+    Route::get('/students/reservations/history', [App\Http\Controllers\Api\StudentController::class,'reservationHistory']);
 });
 
 Route::middleware('auth:api-attendant')->group(function ()
