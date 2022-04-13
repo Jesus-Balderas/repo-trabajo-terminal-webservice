@@ -55,12 +55,12 @@
                             </th>
                             <td>
                                 @if (Auth::guard('attendant')->check())
-                                    <form action="{{ url('/appointments/attendant/' . $reservation->id . '/reject') }}"
+                                    <form action="{{ url('/reservations/attendant/' . $reservation->id . '/reject') }}"
                                         method="POST" class="d-inline-block">
                                         @csrf
                                         <button class="btn btn-sm btn-danger" type="submit">Rechazar</button>
                                     </form>
-                                    <form action="{{ url('/appointments/attendant/' . $reservation->id . '/accept') }}"
+                                    <form action="{{ url('/reservations/attendant/' . $reservation->id . '/accept') }}"
                                         method="POST" class="d-inline-block">
                                         @csrf
                                         <button class="btn btn-sm btn-success" type="submit">Aceptar</button>

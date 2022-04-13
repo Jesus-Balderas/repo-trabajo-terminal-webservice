@@ -55,7 +55,7 @@
                             </th>
                             <td>
                                 @if (Auth::guard('attendant')->check())
-                                    <form action="{{ url('/appointments/attendant/' . $reservation->id . '/finish') }}"
+                                    <form action="{{ url('/reservations/attendant/' . $reservation->id . '/finish') }}"
                                         method="POST" class="d-inline-block">
                                         @csrf
                                         <button class="btn btn-sm btn-warning" type="submit">Finalizar</button>
