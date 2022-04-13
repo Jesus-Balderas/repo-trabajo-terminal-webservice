@@ -17,6 +17,7 @@ class ComputerController extends Controller
         $laboratory = $request->input('laboratory_id');
         $computers = Computer::where('status', 'Disponible')
                     ->where('laboratory_id', '=', $laboratory)
+                    ->orderBy('num_pc', 'asc')
                     ->get(['id','num_pc']);
                     
         return response()->json($computers);
