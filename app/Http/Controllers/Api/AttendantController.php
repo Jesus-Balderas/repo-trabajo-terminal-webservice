@@ -37,5 +37,32 @@ class AttendantController extends Controller
         return $reservations;
     }
 
+    public function reservationHistory()
+    {
+        $attendant = Auth::guard('api-attendant')->user();
+        $reservations = $attendant->asAttendantReservations()
+        ->whereIn('status', ['Rechazada', 'Cancelada', 'Finalizada'])
+        ->with([
+            'student' => function($query){
+                $query->select('id', 'name');
+
+            },
+            'computer' => function($query){
+                $query->select('id', 'num_pc');
+            }
+        ])
+        ->get([
+            "id",
+            "student_id",
+            "computer_id",
+            "schedule_date",
+            "schedule_time",
+            "status",
+            "created_at",
+        ]);
+
+        return $reservations;
+    }
+
 }
 

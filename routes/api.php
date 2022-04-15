@@ -33,6 +33,8 @@ Route::middleware('auth:api-attendant')->group(function ()
     Route::get('/user/attendant', [App\Http\Controllers\Api\AttendantAuthController::class,'show'] );
     Route::post('/logout/attendant', [App\Http\Controllers\Api\AttendantAuthController::class,'logout']);
     Route::get('/attendants/reservations', [App\Http\Controllers\Api\AttendantController::class,'indexReservations']);
+    Route::get('/attendants/reservations/history', [App\Http\Controllers\Api\AttendantController::class,'reservationHistory']);
+    Route::get('/attendants/reservations/accept', [App\Http\Controllers\Api\AttendantController::class,'reservationsAccepted']);
 });
 
 Route::get('/laboratories', [App\Http\Controllers\Api\LaboratoryController::class,'laboratories']);
