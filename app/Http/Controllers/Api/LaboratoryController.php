@@ -11,13 +11,13 @@ class LaboratoryController extends Controller
     
     public function laboratories()
     {
-        $laboratories = Laboratory::all(['id','name','classroom','edifice','status','file_path']);
+        $laboratories = Laboratory::orderBy('id','asc')->get();
         return $laboratories;
     }
     
     public function attendants(Laboratory $laboratory)
     {
-        return $laboratory->attendant()->orderBy('id', 'asc')->get();
+        return $laboratory->attendant()->get();
 
     }
     
