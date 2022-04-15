@@ -37,8 +37,8 @@ class StudentController extends Controller
          return $reservations;
     }
 
-    public function reservationHistory() {
-
+    public function reservationHistory()
+    {
         $student = Auth::guard('api-student')->user();
         $reservations =  $student->asStudentReservations()
          ->where('status','!=', 'Reservada')
