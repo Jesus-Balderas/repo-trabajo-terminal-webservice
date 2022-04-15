@@ -42,7 +42,7 @@ class AttendantController extends Controller
         ->whereIn('status', ['Rechazada', 'Cancelada', 'Finalizada'])
         ->with([
             'student' => function($query){
-                $query->select('id', 'name');
+                $query->select('id', 'name', 'num_boleta');
 
             },
             'computer' => function($query){
