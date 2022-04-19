@@ -41,7 +41,7 @@ class StudentAuthController extends Controller
 
         Auth::guard('api-student')->logout();
         $success = true;
-        $message = 'Cierre de sesión exitoso';
+        $message = 'Cierre de sesion exitoso';
         return compact('success', 'message');
     }
 }
