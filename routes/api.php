@@ -28,6 +28,7 @@ Route::middleware('auth:api-student')->group(function ()
     Route::get('/students/reservations/history', [App\Http\Controllers\Api\StudentController::class,'reservationHistory']);
     Route::get('/students/reservations/accept', [App\Http\Controllers\Api\StudentController::class,'reservationsAccepted']);
     Route::post('/reservation', [App\Http\Controllers\Api\ReservationController::class,'store']);
+    Route::post('/reservation/{reservation}/cancel', [App\Http\Controllers\Api\ReservationController::class, 'cancel']);
 });
 
 Route::middleware('auth:api-attendant')->group(function ()

@@ -51,12 +51,42 @@ class ReservationController extends Controller
             $message = 'La reservacion se ha registrado exitosamente.';
 
             return compact('success', 'message');
-            
+
         } else {
 
             $success = false;
             $message = 'Ocurrio un error al registrar la reservación.';
         }
+    }
+
+    public function cancel(Reservation $reservation)
+    {
+        if ($reservation->status == 'Reservada') {
+        
+            $reservation->status = "Cancelada";
+            DB::table('computers')
+                ->where('id', $reservation->computer_id)
+                ->update(['status' => 'Disponible']);
+            $save = $reservation->save();
+            
+            if ($save) {
+                $success = true;
+                $message = 'La reservacion se cancelo correctamente.';
+                return compact('success', 'message');
+            }
+            else {
+                $success = false;
+                $message = 'Ocurrio un problema al cancelar la reservación.';
+                return compact('success', 'message');
+                
+            }
+        } 
+        else {
+            $success = false;
+                $message = 'No se puede cancelar la reservación.';
+                return compact('success', 'message');
+        }
+        
     }
     
 }
