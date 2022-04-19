@@ -41,7 +41,7 @@ class StudentController extends Controller
     {
         $student = Auth::guard('api-student')->user();
         $reservations =  $student->asStudentReservations()
-         ->where('status','!=', 'Reservada')
+         ->whereIn('status', ['Rechazada', 'Cancelada', 'Finalizada'])
          ->with([
                     'laboratory' => function($query) {
                         $query->select('id', 'name');
