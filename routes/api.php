@@ -26,6 +26,7 @@ Route::middleware('auth:api-student')->group(function ()
     Route::post('/logout/student', [App\Http\Controllers\Api\StudentAuthController::class,'logout']);
     Route::get('/students/reservations', [App\Http\Controllers\Api\StudentController::class,'indexReservations']);
     Route::get('/students/reservations/history', [App\Http\Controllers\Api\StudentController::class,'reservationHistory']);
+    Route::get('/students/reservations/accept', [App\Http\Controllers\Api\StudentController::class,'reservationsAccepted']);
     Route::post('/reservation', [App\Http\Controllers\Api\ReservationController::class,'store']);
 });
 
