@@ -139,6 +139,31 @@ class AttendantController extends Controller
 
     }
 
+    public function finish(Reservation $reservation)
+    {
+        if ($reservation->status == 'Aceptada') {
+        
+            $reservation->status = "Finalizada";
+            DB::table('computers')
+                ->where('id', $reservation->computer_id)
+                ->update(['status' => 'Disponible']);
+                $save = $reservation->save();
+                if ($save) {
+                
+                    $success = true;
+                    $message = 'La reservacion se ha finalizado correctamente';
+                    return compact('success', 'message');
+                }
+
+        } else {
+
+            $success = false;
+            $message = 'Ocurrio un error al finalizar la reservacion.';
+            return compact('success', 'message');
+        }
+
+    }
+
     
 }
 
