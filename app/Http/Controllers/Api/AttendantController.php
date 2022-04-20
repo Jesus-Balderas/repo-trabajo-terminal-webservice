@@ -116,6 +116,29 @@ class AttendantController extends Controller
 
     }
 
+    public function accept(Reservation $reservation)
+    {
+        if ($reservation->status == 'Reservada') {
+        
+            $reservation->status = "Aceptada";
+            $reservation->save();
+            $save = $reservation->save();
+            if ($save) {
+                
+                $success = true;
+                $message = 'La reservacion se ha aceptado correctamente';
+                return compact('success', 'message');
+            }
+
+        } else {
+
+            $success = false;
+            $message = 'Ocurrio un error al rechazar la reservacion.';
+            return compact('success', 'message');
+        }
+
+    }
+
     
 }
 
