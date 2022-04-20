@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Reservation;
+use Illuminate\Support\Facades\DB;
 
 class AttendantController extends Controller
 {
@@ -87,6 +89,31 @@ class AttendantController extends Controller
         ]);
 
         return $reservations;
+    }
+
+    public function reject(Reservation $reservation)
+    {
+        if ($reservation->status == 'Reservada') {
+        
+            $reservation->status = "Rechazada";
+            DB::table('computers')
+                ->where('id', $reservation->computer_id)
+                ->update(['status' => 'Disponible']);
+            $save = $reservation->save();
+            if ($save) {
+                
+                $success = true;
+                $message = 'La reservacion se ha rechazado correctamente';
+                return compact('success', 'message');
+            }
+
+        } else {
+
+            $success = false;
+            $message = 'Ocurrio un error al rechazar la reservacion.';
+            return compact('success', 'message');
+        }
+
     }
 
     
