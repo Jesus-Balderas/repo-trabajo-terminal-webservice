@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/login/student', [App\Http\Controllers\Api\StudentAuthController::class,'login']);
+Route::post('/register/student', [App\Http\Controllers\Api\StudentAuthController::class,'register']);
 Route::post('/login/attendant', [App\Http\Controllers\Api\AttendantAuthController::class,'login']);
 
 

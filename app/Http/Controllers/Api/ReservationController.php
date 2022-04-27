@@ -74,12 +74,7 @@ class ReservationController extends Controller
                 $message = 'La reservacion se cancelo correctamente.';
                 return compact('success', 'message');
             }
-            else {
-                $success = false;
-                $message = 'Ocurrio un problema al cancelar la reservación.';
-                return compact('success', 'message');
-                
-            }
+            
         } 
         else {
             $success = false;
