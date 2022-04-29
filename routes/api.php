@@ -42,6 +42,7 @@ Route::middleware('auth:api-attendant')->group(function ()
     Route::post('/reservation/{reservation}/reject', [App\Http\Controllers\Api\AttendantController::class, 'reject']);
     Route::post('/reservation/{reservation}/accept', [App\Http\Controllers\Api\AttendantController::class, 'accept']);
     Route::post('/reservation/{reservation}/finish', [App\Http\Controllers\Api\AttendantController::class, 'finish']);
+    Route::get('/reservations/chart', [\App\Http\Controllers\Api\ChartController::class, 'reservations']);
 
 });
 
