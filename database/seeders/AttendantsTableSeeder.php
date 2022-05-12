@@ -44,7 +44,7 @@ class AttendantsTableSeeder extends Seeder
             'first_name' => 'Tenorio',
             'second_name' => 'Marron',
             'email' => 'fabian@gmail.com',
-            'password' => bcrypt('marco123')
+            'password' => bcrypt('fabian123')
         ]);
         Attendant::create([
             'num_empleado' => 'E5005',

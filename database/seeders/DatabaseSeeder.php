@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             AttendantsTableSeeder::class,
             LaboratoriesTableSeeder::class,
             CareersTableSeeder::class,
-            StudentsTableSeeder::class,
         ]);
     }
 }
