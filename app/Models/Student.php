@@ -71,4 +71,16 @@ class Student extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function sendFCM($message)
+    {
+
+        return fcm()
+                ->to([$this->device_token])
+                ->notification([
+                    'title' => config('app.name'),
+                    'body' => $message,
+                ])
+                ->send();
+    }
 }

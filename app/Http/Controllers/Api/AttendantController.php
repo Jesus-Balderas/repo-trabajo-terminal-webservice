@@ -99,6 +99,8 @@ class AttendantController extends Controller
             DB::table('computers')
                 ->where('id', $reservation->computer_id)
                 ->update(['status' => 'Disponible']);
+
+            $reservation->student->sendFCM('¡Su reservación ha sido rechazada!');
             $save = $reservation->save();
             if ($save) {
                 
@@ -124,7 +126,7 @@ class AttendantController extends Controller
             $reservation->save();
             $save = $reservation->save();
             if ($save) {
-                
+                $reservation->student->sendFCM('¡Su reservación ha sido aceptada!');
                 $success = true;
                 $message = 'La reservacion se ha aceptado correctamente';
                 return compact('success', 'message');
@@ -150,6 +152,7 @@ class AttendantController extends Controller
                 $save = $reservation->save();
                 if ($save) {
                 
+                    $reservation->student->sendFCM('¡Su reservación ha sido finalizada!');
                     $success = true;
                     $message = 'La reservacion se ha finalizado correctamente';
                     return compact('success', 'message');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,8 @@ class ReservationController extends Controller
         $computer_id = $request->input('computer_id');
         $schedule_date = $request->input('scheduled_date');
         $schedule_time = $request->input('scheduled_hour');
+
+        $attendant = Attendant::find($attendant_id);
     
         $reservation = Reservation::create([
             'laboratory_id' => $laboratory_id,
@@ -46,7 +49,8 @@ class ReservationController extends Controller
             ->update(['status' => 'Reservada']);
         
         if ($reservation) {
-            
+
+            $attendant->sendFCM('¡Ha recibido una nueva solicitud de reservación!');
             $success = true;
             $message = 'La reservacion se ha registrado exitosamente.';
 
@@ -70,6 +74,7 @@ class ReservationController extends Controller
             $save = $reservation->save();
             
             if ($save) {
+                $reservation->attendant->sendFCM('¡Se ha cancelado una solicitud de reservación!');
                 $success = true;
                 $message = 'La reservacion se cancelo correctamente.';
                 return compact('success', 'message');
