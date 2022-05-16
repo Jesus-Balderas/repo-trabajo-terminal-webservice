@@ -10,8 +10,12 @@ class FirebaseController extends Controller
 {
     public function sendAll(Request $request)
     {
-        $recipients = Student::whereNotNull('device_token')
+        $students = Student::whereNotNull('device_token')
             ->pluck('device_token')->toArray();
+        $attendants = Attendant::whereNotNull('device_token')
+            ->pluck('device_token')->toArray();
+        $recipients = array_merge($students, $attendants);
+        
         fcm()
             ->to($recipients)
             ->notification([
