@@ -13,7 +13,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    ¡Bienvenido! Por favor selecciona una opción del menú lateral izquierdo.
                 </div>
             </div>
         </div>

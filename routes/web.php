@@ -39,6 +39,9 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::view('/home', 'dashboard.user.home')->name('home');
         Route::post('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
     });
+    
+    //FCM
+    Route::post('fcm/send', [App\Http\Controllers\FirebaseController::class, 'sendAll'])->name('fcm');
 });
 
 Route::prefix('student')->name('student.')->group(function(){

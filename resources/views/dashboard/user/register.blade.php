@@ -31,7 +31,6 @@
 
                         <form method="POST" action="{{ route('user.create') }}">
                             @csrf
-
                             <div class="form-group">
                                 <div class="input-group input-group-alternative mb-3">
                                     <div class="input-group-prepend">
