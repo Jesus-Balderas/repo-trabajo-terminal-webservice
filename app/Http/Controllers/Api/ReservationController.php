@@ -32,34 +32,48 @@ class ReservationController extends Controller
         $computer_id = $request->input('computer_id');
         $schedule_date = $request->input('scheduled_date');
         $schedule_time = $request->input('scheduled_hour');
-
         $attendant = Attendant::find($attendant_id);
-    
-        $reservation = Reservation::create([
-            'laboratory_id' => $laboratory_id,
-            'attendant_id' => $attendant_id,
-            'computer_id' => $computer_id,
-            'student_id' => $student_id,
-            'schedule_date' => $schedule_date,
-            'schedule_time' => $schedule_time
-        ]);
-    
-        DB::table('computers')
-            ->where('id', $computer_id)
-            ->update(['status' => 'Reservada']);
-        
-        if ($reservation) {
 
-            $attendant->sendFCM('¡Ha recibido una nueva solicitud de reservación!');
-            $success = true;
-            $message = 'La reservacion se ha registrado exitosamente.';
+        $exists = Reservation::where('laboratory_id', $laboratory_id)
+                  ->where('student_id', $student_id)
+                  ->where('schedule_date', $schedule_date)
+                  ->where('status', 'Reservada')
+                  ->exists();
 
+        if($exists){
+
+            $success = false;
+            $message = 'Ya tienes una reservación para ese día en el laboratorio que seleccionaste';
             return compact('success', 'message');
 
         } else {
 
-            $success = false;
-            $message = 'Ocurrio un error al registrar la reservación.';
+            $reservation = Reservation::create([
+                'laboratory_id' => $laboratory_id,
+                'attendant_id' => $attendant_id,
+                'computer_id' => $computer_id,
+                'student_id' => $student_id,
+                'schedule_date' => $schedule_date,
+                'schedule_time' => $schedule_time
+            ]);
+                DB::table('computers')
+                ->where('id', $computer_id)
+                ->update(['status' => 'Reservada']);
+
+            if ($reservation) {
+
+                $attendant->sendFCM('¡Ha recibido una nueva solicitud de reservación!');
+                $success = true;
+                $message = 'La reservacion se ha registrado exitosamente.';
+    
+                return compact('success', 'message');
+    
+            } else {
+    
+                $success = false;
+                $message = 'Ocurrio un error al registrar la reservación.';
+                return compact('success', 'message');
+            }
         }
     }
 
