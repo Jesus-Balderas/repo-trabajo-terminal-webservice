@@ -102,7 +102,7 @@
         <div class="col-xl-6">
 
           <div class="copyright text-center text-xl-left text-muted">
-            &copy; 2018 <a href="/" class="font-weight-bold ml-1">{{ config('app.name') }}</a>
+            &copy; 2022 <a href="/" class="font-weight-bold ml-1">{{ config('app.name') }}</a>
           </div>
         </div>
 
